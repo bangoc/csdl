@@ -18,6 +18,7 @@ int main(int argc, char **argv) {
     exit(1);
   }
 
+  // Use your real login instead of MY_USER and MY_PASSWORD
   if (mysql_real_connect(con, "localhost", MY_USER, MY_PASSWORD,
           "StudentDB", 0, NULL, 0) == NULL) {
     finish_with_error(con);

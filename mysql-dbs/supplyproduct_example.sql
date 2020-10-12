@@ -43,4 +43,16 @@ select sid from SupplyProductDB.SupplyProduct
 where sid != 'S2' AND
       quantity = ANY(select quantity from SupplyProductDB.SupplyProduct as SP2 where SP2.sid='S2');
 
-      
+select * from SupplyProductDB.Supplier as S
+where Exists(select sid from SupplyProductDB.SupplyProduct where sid = S.sid)
+
+select * from SupplyProductDB.Supplier as S
+where NOT Exists(select sid from SupplyProductDB.SupplyProduct where sid = S.sid)
+
+select sum(size) from SupplyProductDB.Supplier
+where city="London"
+
+select sid, avg(quantity) as avg_quantity
+from SupplyProductDB.SupplyProduct
+group by sid
+having avg_quantity between 10 and 200
