@@ -1,0 +1,9 @@
+	IF NEW.balance < 0 THEN
+		INSERT INTO loan VALUES
+		(NEW.account_number, NEW.branch_name, -NEW.balance);
+		INSERT INTO borrower
+		(SELECT customer_name, account_number
+		FROM depositor
+		WHERE NEW.account_number = depositor.account_number);		
+		SET NEW.balance = 0;
+	END IF;
